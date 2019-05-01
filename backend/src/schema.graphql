@@ -1,0 +1,14 @@
+# import * from './generated/prisma.graphql'
+
+type Mutation {
+    createAdmin(
+        email: String!
+        name: String!
+        password: String!
+        verifyPassword: String!
+    ): Admin!
+}
+
+type Query {
+    admins: [Admin]!
+}
