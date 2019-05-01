@@ -4,16 +4,16 @@
             <h1>{{ msg }}</h1>
         </div>
         <div class="login">
-            <form action="post" id="adminLogin">
+            <form action="post" id="adminLogin" @submit.prevent="doLogin">
                 <fieldset>
                     <h3>Login to the admin panel</h3>
                     <label for="email">
                         Email address:
-                        <input type="email" name="email" placeholder="Email address" v-model="email" />
+                        <input type="email" placeholder="Email address" v-model="email" />
                     </label>
                     <label for="password">
                         Password:
-                        <input type="password" name="password" placeholder="Password" v-model="password" />
+                        <input type="password" placeholder="Password" v-model="password" />
                     </label>
                     <button type="submit">Login</button>
                 </fieldset>
@@ -30,6 +30,12 @@
             return {
                 email: '',
                 password: ''
+            }
+        },
+        methods: {
+            doLogin: function () {
+                alert(`Hey, I'm handling your login.`);
+                console.log(`Logging in ${this.email} ${this.password}`)
             }
         }
     }
