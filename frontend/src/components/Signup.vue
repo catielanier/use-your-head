@@ -3,10 +3,14 @@
         <div class="header">
             <h1>{{ msg }}</h1>
         </div>
-        <div class="login">
-            <form action="post" id="adminLogin" @submit.prevent="doLogin">
+        <div class="sign">
+            <form action="post" id="adminLogin" @submit.prevent="doSignup">
                 <fieldset>
-                    <h3>Login to the admin panel</h3>
+                    <h3>Sign up for an account!</h3>
+                    <label for="name">
+                        Name:
+                        <input type="text" placeholder="Your name" v-model="name">
+                    </label>
                     <label for="email">
                         Email address:
                         <input type="email" placeholder="Email address" v-model="email" />
@@ -15,9 +19,13 @@
                         Password:
                         <input type="password" placeholder="Password" v-model="password" />
                     </label>
-                    <button type="submit">Login</button>
+                    <label for="verifyPassword">
+                        Verify password:
+                        <input type="password" placeholder="Password" v-model="verifyPassword" />
+                    </label>
+                    <button type="submit">Signup</button>
                     <div>
-                        <router-link to="/signup">Sign up for an account.</router-link>
+                        <router-link to="/">Login to your admin account.</router-link>
                     </div>
                 </fieldset>
             </form>
@@ -27,17 +35,19 @@
 
 <script>
     export default {
-        name: 'AdminLogin',
+        name: 'Signup',
         props: ["msg"],
         data() {
             return {
                 email: '',
-                password: ''
+                name: '',
+                password: '',
+                verifyPassword: ''
             }
         },
         methods: {
-            doLogin: function () {
-                alert(`Hey, I'm handling your login.`);
+            doSignup: function () {
+                alert(`Hey, I'm handling your signup.`);
                 console.log(`Logging in ${this.email} ${this.password}`)
             }
         }
