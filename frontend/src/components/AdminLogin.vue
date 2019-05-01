@@ -4,16 +4,16 @@
             <h1>{{ msg }}</h1>
         </div>
         <div class="login">
-            <form action="post">
+            <form action="post" id="adminLogin">
                 <fieldset>
                     <h3>Login to the admin panel</h3>
                     <label for="email">
                         Email address:
-                        <input type="email" name="email" placeholder="Email address" />
+                        <input type="email" name="email" placeholder="Email address" v-model="email" />
                     </label>
                     <label for="password">
                         Password:
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Password" v-model="password" />
                     </label>
                     <button type="submit">Login</button>
                 </fieldset>
@@ -23,12 +23,16 @@
 </template>
 
 <script>
-export default {
-  name: 'AdminLogin',
-  props: {
-    msg: String
-  }
-}
+    export default {
+        name: 'AdminLogin',
+        props: ["msg"],
+        data() {
+            return {
+                email: '',
+                password: ''
+            }
+        }
+    }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
