@@ -76,8 +76,8 @@
         font-size: 1rem;
         border: 1px solid black;
         &:focus {
-        outline: 0;
-        border-color: blue;
+            outline: 0;
+            border-color: blue;
         }
     }
     button,
@@ -94,17 +94,17 @@
         padding: 0;
 
         &[disabled] {
-        opacity: 0.5;
+            opacity: 0.5;
         }
         &::before {
-        height: 10px;
-        content: '';
-        display: block;
-        background-image: linear-gradient(to right, #333 0%, #999 50%, #333 100%);
+            height: 10px;
+            content: '';
+            display: block;
+            background-image: linear-gradient(to right, #333 0%, #999 50%, #333 100%);
         }
         &[aria-busy='true']::before {
-        background-size: 50% auto;
-        // animation: ${loading} 0.5s linear infinite;
+            background-size: 50% auto;
+            // animation: ${loading} 0.5s linear infinite;
         }
     }
 </style>

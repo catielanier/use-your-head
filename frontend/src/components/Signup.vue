@@ -45,8 +45,17 @@
         },
         methods: {
             doSignup: function () {
-                alert(`Hey, I'm handling your signup.`);
-                console.log(`Logging in ${this.email} ${this.password}`)
+                const {email, name, password, verifyPassword} = this.$data;
+                console.log(this.$data);
+                this.$apollo.mutate({
+                    mutation: CREATE_ADMIN_MUTATION,
+                    variables: {
+                        email,
+                        name,
+                        password,
+                        verifyPassword
+                    }
+                })
             }
         }
     }
@@ -55,8 +64,8 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
     h3 {
-    margin: 40px 0 0;
-    padding-bottom: 25px;
+        margin: 40px 0 0;
+        padding-bottom: 25px;
     }
     form {
         box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
@@ -89,8 +98,8 @@
         font-size: 1rem;
         border: 1px solid black;
         &:focus {
-        outline: 0;
-        border-color: blue;
+            outline: 0;
+            border-color: blue;
         }
     }
     button,
@@ -107,17 +116,17 @@
         padding: 0;
 
         &[disabled] {
-        opacity: 0.5;
+            opacity: 0.5;
         }
         &::before {
-        height: 10px;
-        content: '';
-        display: block;
-        background-image: linear-gradient(to right, #ff3019 0%, #e2b04a 50%, #ff3019 100%);
+            height: 10px;
+            content: '';
+            display: block;
+            background-image: linear-gradient(to right, #ff3019 0%, #e2b04a 50%, #ff3019 100%);
         }
         &[aria-busy='true']::before {
-        background-size: 50% auto;
-        // animation: ${loading} 0.5s linear infinite;
+            background-size: 50% auto;
+            // animation: ${loading} 0.5s linear infinite;
         }
     }
 </style>
