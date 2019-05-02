@@ -1,8 +1,9 @@
 <template>
     <div class="admin">
         <div class="sign">
-            <form action="post" id="adminLogin" @submit.prevent="doSignup">
-                <fieldset>
+            <form action="post" id="adminLogin" @submit.prevent="doSignup" v-bind:disabled="this.loading">
+                <fieldset v-bind:aria-busy="this.loading">
+                    <p v-if="this.success">Success! You will be emailed when your account is active.</p>
                     <h3>Sign up for an account!</h3>
                     <label for="name">
                         Name:
@@ -40,12 +41,18 @@
                 email: '',
                 name: '',
                 password: '',
-                verifyPassword: ''
+                verifyPassword: '',
+                error: '',
+                loading: false,
+                success: false
             }
         },
         methods: {
             doSignup: async function () {
                 const {email, name, password, verifyPassword} = this.$data;
+                this.loading = true;
+                this.success = false;
+
                 const res = await this.$apollo.mutate({
                     mutation: CREATE_ADMIN_MUTATION,
                     variables: {
@@ -54,12 +61,16 @@
                         password,
                         verifyPassword
                     }
+                }).catch(error => {
+
                 });
                 console.log(res);
                 this.email = '';
                 this.name = '';
                 this.password = '';
                 this.verifyPassword = '';
+                this.loading = false;
+                this.success = true;
             }
         }
     }
@@ -129,11 +140,11 @@
             height: 10px;
             content: '';
             display: block;
-            background-image: linear-gradient(to right, #ff3019 0%, #e2b04a 50%, #ff3019 100%);
+            background-image: linear-gradient(to right, #333 0%, #999 50%, #333 100%);
         }
         &[aria-busy='true']::before {
             background-size: 50% auto;
-            // animation: ${loading} 0.5s linear infinite;
+            animation: 0.5s linear infinite;
         }
     }
 </style>
