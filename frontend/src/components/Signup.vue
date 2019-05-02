@@ -76,7 +76,7 @@
             color: white;
             padding: 0.5rem 1.2rem;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 1.3rem;
             margin-top: 10px;
             display: inline-block;
         }
@@ -84,7 +84,7 @@
     input,
     textarea,
     select {
-        width: 90%;
+        width: 100%;
         padding: 0.5rem;
         font-size: 1rem;
         border: 1px solid black;
