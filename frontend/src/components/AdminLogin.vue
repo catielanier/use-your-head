@@ -62,8 +62,8 @@
             background: black;
             color: white;
             padding: 0.5rem 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
-            font-size: 0.8rem;
             margin-top: 10px;
             display: inline-block;
         }
@@ -100,7 +100,7 @@
         height: 10px;
         content: '';
         display: block;
-        background-image: linear-gradient(to right, #ff3019 0%, #e2b04a 50%, #ff3019 100%);
+        background-image: linear-gradient(to right, #333 0%, #999 50%, #333 100%);
         }
         &[aria-busy='true']::before {
         background-size: 50% auto;
