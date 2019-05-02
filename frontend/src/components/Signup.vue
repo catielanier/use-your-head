@@ -1,8 +1,5 @@
 <template>
     <div class="admin">
-        <div class="header">
-            <h1>{{ msg }}</h1>
-        </div>
         <div class="sign">
             <form action="post" id="adminLogin" @submit.prevent="doSignup">
                 <fieldset>
@@ -34,9 +31,10 @@
 </template>
 
 <script>
+    import { CREATE_ADMIN_MUTATION } from '../constraints/graphql';
+
     export default {
         name: 'Signup',
-        props: ["msg"],
         data() {
             return {
                 email: '',

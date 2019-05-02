@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <Signup msg="Use Your Head Trivia"/>
+    <Signup />
   </div>
 </template>
 
