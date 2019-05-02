@@ -44,10 +44,9 @@
             }
         },
         methods: {
-            doSignup: function () {
+            doSignup: async function () {
                 const {email, name, password, verifyPassword} = this.$data;
-                console.log(this.$data);
-                this.$apollo.mutate({
+                const res = await this.$apollo.mutate({
                     mutation: CREATE_ADMIN_MUTATION,
                     variables: {
                         email,
@@ -55,7 +54,12 @@
                         password,
                         verifyPassword
                     }
-                })
+                });
+                console.log(res);
+                this.email = '';
+                this.name = '';
+                this.password = '';
+                this.verifyPassword = '';
             }
         }
     }
