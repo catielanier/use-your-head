@@ -1,8 +1,5 @@
 <template>
     <div class="admin">
-        <div class="header">
-            <h1>{{ msg }}</h1>
-        </div>
         <div class="login">
             <form action="post" id="adminLogin" @submit.prevent="doLogin">
                 <fieldset>
@@ -28,7 +25,6 @@
 <script>
     export default {
         name: 'AdminLogin',
-        props: ["msg"],
         data() {
             return {
                 email: '',
@@ -46,9 +42,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-    h3 {
-    margin: 40px 0 0;
-    padding-bottom: 25px;
+    .login {
+        margin-top: 25px;
     }
     form {
         box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
