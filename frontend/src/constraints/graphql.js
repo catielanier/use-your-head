@@ -19,3 +19,19 @@ export const CREATE_ADMIN_MUTATION = gql`
         }
     }
 `;
+
+export const LOGIN_ADMIN_MUTATION = gql`
+    mutation LOGIN_ADMIN_MUTATION(
+        $email: String!
+        $password: String!
+    ) {
+        loginAdmin(
+            email: $email
+            passowrd: $password
+        ) {
+            id
+            email
+            name
+        }
+    }
+`;

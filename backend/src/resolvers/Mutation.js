@@ -54,7 +54,7 @@ const mutations = {
         }
 
         // 2. Check if their password is correct
-        const valid = await bcrypt.compare(password, user.password);
+        const valid = await bcrypt.compare(password, admin.password);
         if (!valid) {
           throw new Error('Invalid Password!');
         }
