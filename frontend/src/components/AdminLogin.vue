@@ -1,8 +1,10 @@
 <template>
     <div class="admin">
         <div class="login">
-            <form action="post" id="adminLogin" @submit.prevent="doLogin">
-                <fieldset>
+            <form action="post" id="adminLogin" @submit.prevent="doLogin" v-bind:disabled="this.loading">
+                <fieldset v-bind:aria-busy="this.loading">
+                    <p v-if="this.success">You are logged in!</p>
+                    <p class="error-message" v-if="this.error !== null">Error: {{this.error}}</p>
                     <h3>Login to the admin panel</h3>
                     <label for="email">
                         Email address:
@@ -23,18 +25,43 @@
 </template>
 
 <script>
+    import { LOGIN_ADMIN_MUTATION } from '../constraints/graphql';
+
     export default {
         name: 'AdminLogin',
         data() {
             return {
                 email: '',
-                password: ''
+                password: '',
+                error: null,
+                loading: false,
+                success: false
             }
         },
         methods: {
-            doLogin: function () {
-                alert(`Hey, I'm handling your login.`);
-                console.log(`Logging in ${this.email} ${this.password}`)
+            doLogin: async function () {
+                const {email, password} = this.$data;
+                this.loading = true;
+                this.success = false;
+
+                await this.$apollo.mutate({
+                    mutation: LOGIN_ADMIN_MUTATION,
+                    variables: {
+                        email,
+                        password
+                    }
+                }).then((res) => {
+                    console.log(res);
+                    this.email = '';
+                    this.password = '';
+                    this.loading = false;
+                    this.success = true;
+                    this.error = null;
+                }).catch(error => {
+                    this.loading = false;
+                    const errorMessage = error.message.replace('GraphQL error: ', '');
+                    this.error = errorMessage;
+                });
             }
         }
     }
