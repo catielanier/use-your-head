@@ -27,7 +27,7 @@ export const LOGIN_ADMIN_MUTATION = gql`
     ) {
         loginAdmin(
             email: $email
-            passowrd: $password
+            password: $password
         ) {
             id
             email
