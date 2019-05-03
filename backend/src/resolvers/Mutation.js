@@ -44,6 +44,29 @@ const mutations = {
 
         // Return the admin
         return admin;
+    },
+
+    async loginAdmin(parent, { email, password }, ctx, info) {
+        // 1. check if there is a user with that email
+        const admin = await ctx.db.query.admin({ where: { email } });
+        if (!admin) {
+          throw new Error(`No such user found for ${email}.`);
+        }
+
+        // 2. Check if their password is correct
+        const valid = await bcrypt.compare(password, user.password);
+        if (!valid) {
+          throw new Error('Invalid Password!');
+        }
+
+        const adminToken = jwt.sign({ adminId: admin.id }, process.env.APP_SECRET);
+
+        ctx.response.cookie('admin_token', adminToken, {
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24 * 365
+        });
+
+        return admin;
     }
 };
 

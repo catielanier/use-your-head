@@ -7,6 +7,11 @@ type Mutation {
         password: String!
         verifyPassword: String!
     ): Admin!
+
+    loginAdmin(
+        email: String!
+        password: String!
+    ): Admin!
 }
 
 type Query {

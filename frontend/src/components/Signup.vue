@@ -20,7 +20,7 @@
                     </label>
                     <label for="verifyPassword">
                         Verify password:
-                        <input type="password" placeholder="Password" v-model="verifyPassword" />
+                        <input type="password" placeholder="Verify Password" v-model="verifyPassword" />
                     </label>
                     <button type="submit">Signup</button>
                     <div>
@@ -76,7 +76,6 @@
                     const errorMessage = error.message.replace('GraphQL error: ', '');
                     this.error = errorMessage;
                 });
-                
             }
         }
     }
