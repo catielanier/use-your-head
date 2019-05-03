@@ -16,5 +16,5 @@ type Mutation {
 
 type Query {
     admins: [Admin]!
-    me: Admin!
+    me: Admin
 }
