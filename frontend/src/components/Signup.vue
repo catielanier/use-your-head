@@ -4,6 +4,7 @@
             <form action="post" id="adminLogin" @submit.prevent="doSignup" v-bind:disabled="this.loading">
                 <fieldset v-bind:aria-busy="this.loading">
                     <p v-if="this.success">Success! You will be emailed when your account is active.</p>
+                    <p class="error-message" v-if="this.error !== null">Error: {{this.error}}</p>
                     <h3>Sign up for an account!</h3>
                     <label for="name">
                         Name:
@@ -42,7 +43,7 @@
                 name: '',
                 password: '',
                 verifyPassword: '',
-                error: '',
+                error: null,
                 loading: false,
                 success: false
             }
@@ -52,8 +53,8 @@
                 const {email, name, password, verifyPassword} = this.$data;
                 this.loading = true;
                 this.success = false;
-
-                const res = await this.$apollo.mutate({
+                
+                await this.$apollo.mutate({
                     mutation: CREATE_ADMIN_MUTATION,
                     variables: {
                         email,
@@ -61,16 +62,21 @@
                         password,
                         verifyPassword
                     }
+                }).then((res) => {
+                    console.log(res);
+                    this.email = '';
+                    this.name = '';
+                    this.password = '';
+                    this.verifyPassword = '';
+                    this.loading = false;
+                    this.success = true;
+                    this.error = null;
                 }).catch(error => {
-
+                    this.loading = false;
+                    const errorMessage = error.message.replace('GraphQL error: ', '');
+                    this.error = errorMessage;
                 });
-                console.log(res);
-                this.email = '';
-                this.name = '';
-                this.password = '';
-                this.verifyPassword = '';
-                this.loading = false;
-                this.success = true;
+                
             }
         }
     }
