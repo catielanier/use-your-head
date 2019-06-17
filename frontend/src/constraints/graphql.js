@@ -36,8 +36,8 @@ export const LOGIN_ADMIN_MUTATION = gql`
     }
 `;
 
-export const CURRENT_USER_QUERY = gql`
-    query CURRENT_USER_QUERY {
+export const CURRENT_ADMIN_QUERY = gql`
+    query CURRENT_ADMIN_QUERY {
         me {
             id
             email

@@ -32,12 +32,12 @@ const mutations = {
         );
 
         // Create the admin JWT
-        const adminToken = jwt.sign({
+        const token = jwt.sign({
             adminId: admin.id
         }, process.env.APP_SECRET);
 
         // Set the cookie on response.
-        ctx.response.cookie('admin_token', adminToken, {
+        ctx.response.cookie('token', token, {
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24 * 365
         });
@@ -48,6 +48,8 @@ const mutations = {
 
     async loginAdmin(parent, { email, password }, ctx, info) {
         // 1. check if there is a user with that email
+        email = email.toLowerCase();
+
         const admin = await ctx.db.query.admin({ where: { email } });
         if (!admin) {
           throw new Error(`No such user found for ${email}.`);
@@ -59,9 +61,9 @@ const mutations = {
           throw new Error('Invalid Password!');
         }
 
-        const adminToken = jwt.sign({ adminId: admin.id }, process.env.APP_SECRET);
+        const token = jwt.sign({ adminId: admin.id }, process.env.APP_SECRET);
 
-        ctx.response.cookie('admin_token', adminToken, {
+        ctx.response.cookie('token', token, {
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24 * 365
         });

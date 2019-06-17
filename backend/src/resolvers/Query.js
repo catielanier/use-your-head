@@ -5,11 +5,11 @@ const Query = {
 
     me(parent, args, ctx, info) {
         // check if current user id
-        if (!ctx.request.userId) {
+        if (!ctx.request.adminId) {
             return null;
         }
         return ctx.db.query.user({
-            where: { id: ctx.request.userId }
+            where: { id: ctx.request.adminId }
         }, info);
     }
 };

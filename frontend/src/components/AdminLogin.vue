@@ -25,7 +25,8 @@
 </template>
 
 <script>
-    import { LOGIN_ADMIN_MUTATION } from '../constraints/graphql';
+    import { LOGIN_ADMIN_MUTATION, CURRENT_ADMIN_QUERY } from '../constraints/graphql';
+    import { onLogin } from '../vue-apollo';
 
     export default {
         name: 'AdminLogin',
@@ -49,14 +50,18 @@
                     variables: {
                         email,
                         password
+                    },
+                    refetchQueries: {
+                        query: CURRENT_ADMIN_QUERY
                     }
-                }).then((res) => {
+                }).then(async (res) => {
                     console.log(res);
                     this.email = '';
                     this.password = '';
                     this.loading = false;
                     this.success = true;
                     this.error = null;
+                    await onLogin(this.$apollo.provider.clients.defaultClient, res.token);
                 }).catch(error => {
                     this.loading = false;
                     const errorMessage = error.message.replace('GraphQL error: ', '');

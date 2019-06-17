@@ -33,7 +33,7 @@
 </template>
 
 <script>
-    import { CREATE_ADMIN_MUTATION } from '../constraints/graphql';
+    import { CREATE_ADMIN_MUTATION, CURRENT_ADMIN_QUERY } from '../constraints/graphql';
 
     export default {
         name: 'Signup',

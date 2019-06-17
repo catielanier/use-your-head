@@ -74,6 +74,7 @@ export function createProvider (options = {}) {
 
 // Manually call this when user log in
 export async function onLogin (apolloClient, token) {
+  console.log(apolloClient);
   if (typeof localStorage !== 'undefined' && token) {
     localStorage.setItem(AUTH_TOKEN, token)
   }
