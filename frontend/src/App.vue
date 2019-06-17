@@ -109,7 +109,7 @@ export default {
           title: "Games",
           link: "/games"
         },
-        { icon: "lock_open", title: "Sign In", link: "/signin" },
+        { icon: "lock_open", title: "Sign In", link: "/" },
         { icon: "create", title: "Sign Up", link: "/signup" }
       ];
     },
@@ -120,7 +120,7 @@ export default {
           title: "Games",
           link: "/games"
         },
-        { icon: "lock_open", title: "Sign In", link: "/signin" },
+        { icon: "lock_open", title: "Sign In", link: "/" },
         { icon: "create", title: "Sign Up", link: "/signup" }
       ];
     }
