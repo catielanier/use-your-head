@@ -1,6 +1,0 @@
-type Admin {
-  id: ID! @unique @id
-  name: String!
-  email: String! @unique
-  password: String!
-}
