@@ -17,20 +17,6 @@ const userSchema = new Schema({
     type: String,
     unique: true,
     required: true
-  },
-  role: {
-    type: String,
-    required: true,
-    default: "User",
-    enum: ["Admin", "Banned", "User"]
-  },
-  joinDate: {
-    type: Date,
-    required: true,
-    default: Date.now()
-  },
-  location: {
-    type: String
   }
 });
 
