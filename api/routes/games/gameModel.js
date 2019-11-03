@@ -1,6 +1,7 @@
 "use strict";
 
 const mongoose = require("mongoose");
+const { model: Question } = require("../questions/questionModel");
 const { Schema } = mongoose;
 
 const gameSchema = new Schema({
@@ -12,7 +13,13 @@ const gameSchema = new Schema({
     type: Date,
     required: true,
     default: Date.now()
-  }
+  },
+  questions: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Question
+    }
+  ]
 });
 
 exports.model = mongoose.model("Game", gameSchema);
