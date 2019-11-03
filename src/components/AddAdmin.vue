@@ -1,13 +1,7 @@
 <template>
   <v-container>
-    <h2 class="display-1">Sign-up</h2>
+    <h2 class="display-1">Add Admin</h2>
     <v-form @submit.prevent="doSignup">
-      <p
-        v-if="this.error !== null"
-        class="error"
-      >
-        <span>Error:</span> {{this.error}}
-      </p>
       <v-text-field
         label="Name"
         v-model="name"
@@ -35,18 +29,13 @@
 
 <script>
 import axios from "axios";
-import { setToken } from "../services/tokenService";
 export default {
-  name: "signup",
-  props: {
-    catchUser: Function
-  },
+  name: "add-admin",
   data() {
     return {
-      username: "",
+      name: "",
       email: "",
       password: "",
-      verifyPassword: "",
       loading: false,
       success: false,
       error: null
@@ -69,12 +58,11 @@ export default {
             password
           }
         });
-        const { token } = res.data.data;
-        await setToken(token);
-        await this.$props.catchUser();
-        this.loading = false;
-        this.success = true;
-        this.$router.push("/");
+        if (res) {
+          this.loading = false;
+          this.success = true;
+          this.$router.push("/");
+        }
       } catch (e) {
         this.error = e;
         this.loading = false;

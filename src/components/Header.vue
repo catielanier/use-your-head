@@ -24,6 +24,7 @@
     <v-btn
       text
       v-if="admin"
+      to="/add-admin"
     >
       <v-icon>mdi-account-plus</v-icon> Add Admin
     </v-btn>
