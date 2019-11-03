@@ -31,6 +31,7 @@
     <v-btn
       text
       v-if="admin"
+      @click.prevent="signOut"
     >
       <v-icon>mdi-logout</v-icon> Logout
     </v-btn>
@@ -41,7 +42,8 @@
 export default {
   name: "header",
   props: {
-    admin: String
+    admin: String,
+    signOut: Function
   }
 };
 </script>

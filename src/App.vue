@@ -1,6 +1,9 @@
 <template>
   <v-app>
-    <Header :admin="admin" />
+    <Header
+      :admin="admin"
+      :signOut="signOut"
+    />
     <v-content>
       <router-view
         :admin="this.admin"
@@ -12,6 +15,7 @@
 
 <script>
 import Header from "./components/Header";
+import { removeToken } from "./services/tokenService";
 export default {
   name: "App",
   data() {
@@ -29,6 +33,11 @@ export default {
   methods: {
     catchAdmin: function(id) {
       this.admin = id;
+    },
+    signOut: function() {
+      removeToken("uyhAdmin");
+      localStorage.removeItem("uyhAdminId");
+      this.admin = null;
     }
   }
 };
