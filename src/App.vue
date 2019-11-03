@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import Header from "./components/Header";
 export default {
   name: "App",
@@ -25,25 +24,11 @@ export default {
   },
   beforeMount() {
     const user = localStorage.getItem("uyhAdminId");
-    this.user = user;
-  },
-  mounted() {
-    this.checkPermission();
+    this.admin = user;
   },
   methods: {
-    catchUser: function(id) {
-      this.user = id;
-      this.checkPermission();
-    },
-    checkPermission: async function() {
-      const { user } = this.$data;
-      if (!user) {
-        this.role = null;
-      } else {
-        const userData = await axios.get(`/api/users/${user}`);
-        const { role } = userData.data.data;
-        this.role = role;
-      }
+    catchAdmin: function(id) {
+      this.admin = id;
     }
   }
 };

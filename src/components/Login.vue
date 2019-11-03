@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h2 class="display-1">Login</h2>
+    <h2 class="display-1">Admin Login</h2>
     <v-form @submit.prevent="doLogin">
       <v-text-field
         label="Email Address"
@@ -58,7 +58,7 @@ export default {
           }
         });
         const { token, id } = res.data.data;
-        await setToken("admin", token);
+        await setToken("uyhAdmin", token);
         await this.$props.catchAdmin(id);
         await localStorage.setItem("uyhAdminId", id);
         this.loading = false;

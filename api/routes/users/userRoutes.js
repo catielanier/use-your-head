@@ -16,7 +16,7 @@ router.route("/signup").post(async (req, res, next) => {
 
 router.route("/login").post(async (req, res, next) => {
   try {
-    const user = await userService.isUser(req.body.data);
+    const user = await userService.isUser(req.body);
     if (user) {
       const token = await tokenService.issueToken(user);
       res.status(200).json({

@@ -14,6 +14,12 @@
     >
       <v-icon>mdi-login</v-icon> Login
     </v-btn>
+    <v-btn
+      text
+      v-if="admin"
+    >
+      <v-icon>mdi-logout</v-icon> Logout
+    </v-btn>
   </v-app-bar>
 </template>
 
