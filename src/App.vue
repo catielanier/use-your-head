@@ -1,16 +1,17 @@
 <template>
   <v-app>
     <Header :admin="admin" />
-    <main>
+    <v-content>
       <router-view
         :admin="this.admin"
         :catchAdmin="catchAdmin"
       />
-    </main>
+    </v-content>
   </v-app>
 </template>
 
 <script>
+import axios from "axios";
 import Header from "./components/Header";
 export default {
   name: "App",
@@ -49,6 +50,19 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/css/setup.css";
-@import "./assets/css/fonts.css";
+@font-face {
+  font-family: "Big Noodle Titling";
+  src: local("Big Noodle Titling"), local("Big Noodle Titling"),
+    url("./assets/fonts/big_noodle_titling.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Big Noodle Titling Oblique";
+  src: local("Big Noodle Titling Oblique"), local("Big Noodle Titling Oblique"),
+    url("./assets/fonts/big_noodle_titling_oblique.ttf") format("truetype");
+}
+
+.v-application h2.display-1 {
+  font-family: "Big Noodle Titling", sans-serif !important;
+}
 </style>
