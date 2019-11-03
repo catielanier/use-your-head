@@ -1,59 +1,36 @@
 <template>
-  <section>
+  <v-container>
     <h2 class="display-1">Sign-up</h2>
-    <form
-      @submit.prevent="doSignup"
-      v-bind:disabled="this.loading"
-    >
-      <fieldset v-bind:aria-busy="this.loading">
-        <p
-          v-if="this.error !== null"
-          class="error"
-        >
-          <span>Error:</span> {{this.error}}
-        </p>
-        <label for="username">
-          Name:
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            v-model="username"
-          />
-        </label>
-        <label for="email">
-          Email Address:
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            v-model="email"
-          />
-        </label>
-        <label for="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            v-model="password"
-          />
-        </label>
-        <label for="verifyPassword">
-          Verify Password:
-          <input
-            type="password"
-            name="verifyPassword"
-            placeholder="Verify Password"
-            v-model="verifyPassword"
-          />
-        </label>
-        <button type="submit">
-          <font-awesome-icon :icon="['fas', 'user-plus']" /> Sign-up
-        </button>
-      </fieldset>
-    </form>
-  </section>
+    <v-form @submit.prevent="doSignup">
+      <p
+        v-if="this.error !== null"
+        class="error"
+      >
+        <span>Error:</span> {{this.error}}
+      </p>
+      <v-text-field
+        label="Name"
+        v-model="name"
+        prepend-icon="mdi-email"
+      />
+      <v-text-field
+        label="Email Address"
+        v-model="email"
+        prepend-icon="mdi-email"
+      />
+      <v-text-field
+        :type="show ? 'text' : 'password'"
+        :append-icon="show ? 'mdi-eye-off' : 'mdi-eye'"
+        v-model="password"
+        label="Password"
+        prepend-icon="mdi-key"
+        @click:append="show = !show"
+      />
+      <v-btn type="submit">
+        Sign-up
+      </v-btn>
+    </v-form>
+  </v-container>
 </template>
 
 <script>
