@@ -17,6 +17,19 @@
     <v-btn
       text
       v-if="admin"
+      to="/"
+    >
+      <v-icon>mdi-gamepad-square</v-icon> Games
+    </v-btn>
+    <v-btn
+      text
+      v-if="admin"
+    >
+      <v-icon>mdi-account-plus</v-icon> Add Admin
+    </v-btn>
+    <v-btn
+      text
+      v-if="admin"
     >
       <v-icon>mdi-logout</v-icon> Logout
     </v-btn>
