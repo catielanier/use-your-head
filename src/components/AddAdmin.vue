@@ -2,6 +2,9 @@
   <v-container>
     <h2 class="display-1">Add Admin</h2>
     <v-form @submit.prevent="doSignup">
+      <p v-if="error">
+        {{error}}
+      </p>
       <v-text-field
         label="Name"
         v-model="name"
