@@ -25,7 +25,7 @@
 <script>
 import axios from "axios";
 import AddQuestion from "./AddQuestion";
-import getToken from "../services/tokenService";
+import { getToken } from "../services/tokenService";
 export default {
   name: "create-game",
   data() {
