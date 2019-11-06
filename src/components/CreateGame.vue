@@ -23,18 +23,45 @@
 </template>
 
 <script>
+import axios from "axios";
 import AddQuestion from "./AddQuestion";
+import getToken from "../services/tokenService";
 export default {
   name: "create-game",
   data() {
     return {
       title: "",
-      questions: []
+      questions: [],
+      loading: false,
+      error: null,
+      success: false
     };
   },
   methods: {
     addQuestion: function(question) {
       this.questions.push(question);
+    },
+    addGame: async function() {
+      this.loading = true;
+      const { title, questions } = this.$data;
+      const token = await getToken("uyhAdmin");
+      try {
+        await axios({
+          method: "POST",
+          url: "/api/games",
+          data: {
+            title,
+            questions,
+            token
+          }
+        });
+        this.loading = false;
+        this.success = true;
+        this.$router.push("/");
+      } catch (e) {
+        this.error = e;
+        this.loading = false;
+      }
     }
   },
   components: {
