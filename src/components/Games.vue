@@ -9,7 +9,17 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  name: "games"
+  name: "games",
+  data() {
+    return {
+      games: []
+    };
+  },
+  async beforeMount() {
+    const res = await axios.get("/api/games");
+    this.games = res.data.data;
+  }
 };
 </script>
