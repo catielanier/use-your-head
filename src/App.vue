@@ -56,7 +56,12 @@ export default {
     url("./assets/fonts/big_noodle_titling_oblique.ttf") format("truetype");
 }
 
-.v-application h2.display-1 {
+.v-application h2.display-1,
+.v-application h3.display-2 {
   font-family: "Big Noodle Titling", sans-serif !important;
+}
+
+.v-application h3.display-2 {
+  font-size: 1.8rem !important;
 }
 </style>
