@@ -13,7 +13,7 @@ const teamSchema = new Schema({
     required: true
   },
   score: {
-    type: Int16Array,
+    type: Number,
     default: 0,
     required: true
   }

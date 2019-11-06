@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h2 class="display-1">Create Game</h2>
-    <v-form>
+    <v-form @submit.prevent="addGame">
       <v-text-field
         v-model="title"
         label="Game Title"
@@ -17,7 +17,10 @@
         <p>{{question.question}}</p>
       </v-container>
       <AddQuestion :pushQuestion="addQuestion" />
-      <v-btn color="primary">Create Game</v-btn>
+      <v-btn
+        color="primary"
+        type="submit"
+      >Create Game</v-btn>
     </v-form>
   </v-container>
 </template>

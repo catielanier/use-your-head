@@ -13,26 +13,44 @@ router.route("/").post(async (req, res) => {
     };
     if (questions.length > 0) {
       const questionIds = [];
-      for (let i = 0; i < questions.length; i) {
+      for (let i = 0; i < questions.length; i++) {
         const newQuestion = await questionServices.createQuestion(questions[i]);
-        questionIds.push(newQuestion._id);
+        if (newQuestion) {
+          questionIds.push(newQuestion);
+        } else {
+          res
+            .status(401)
+            .statusMessage(
+              `Issue with creating question: ${questions[i].title}`
+            );
+        }
       }
       game.questions = questionIds;
-      const res = await gameServices.createGame(game);
-      res.status(201).json({
-        data: {
-          game: res
-        }
-      });
+      const newGame = await gameServices.createGame(game);
+      if (newGame) {
+        res.status(201).json({
+          data: {
+            game: newGame
+          }
+        });
+      } else {
+        res.status(401).statusMessage("Unable to create game.");
+      }
     } else {
-      const res = await gameServices.createGame(game);
-      res.status(201).json({
-        data: {
-          game: res
-        }
-      });
+      const newGame = await gameServices.createGame(game);
+      if (newGame) {
+        res.status(201).json({
+          data: {
+            game: newGame
+          }
+        });
+      } else {
+        res.status(401).statusMessage("Unable to create game.");
+      }
     }
   } else {
     res.status(503).statusMessage("You are not logged in.");
   }
 });
+
+exports.router = router;
