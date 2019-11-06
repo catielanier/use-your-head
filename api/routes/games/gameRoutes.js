@@ -53,4 +53,15 @@ router.route("/").post(async (req, res) => {
   }
 });
 
+router.route("/").get(async (_, res) => {
+  const games = await gameServices.getAllGames();
+  if (games) {
+    res.status(200).json({
+      data: games
+    });
+  } else {
+    res.status(400).statusMessage("Unable to fetch games.");
+  }
+});
+
 exports.router = router;
